@@ -859,6 +859,37 @@ typedef int(^FMDBExecuteStatementsCallbackBlock)(NSDictionary *resultsDictionary
 
 #endif
 
+///-------------------------
+/// @name Integrity checking
+///-------------------------
+
+/** Verify the database integrity
+ 
+ @param quick Wether to perform a quick check or a full check.
+ @param log Optional pointer where the integrity check log will be stored.
+ 
+ @return `NO` if the database did not pass the test, `YES` is everything is ok.
+
+ @see [PRAGMA quick_check(N)](http://sqlite.org/pragma.html#pragma_quick_check)
+ @see [PRAGMA integrity_check(N)](http://sqlite.org/pragma.html#pragma_integrity_check)
+ 
+ */
+
+- (BOOL) integrityCheck:(BOOL)quick log:(NSString**)log;
+
+/** Verify the database integrity
+ 
+ @param quick Wether to perform a quick check or a full check.
+ 
+ @return `NO` if the database did not pass the test, `YES` is everything is ok.
+ 
+ @see [PRAGMA quick_check(N)](http://sqlite.org/pragma.html#pragma_quick_check)
+ @see [PRAGMA integrity_check(N)](http://sqlite.org/pragma.html#pragma_integrity_check)
+ 
+ */
+
+- (BOOL) integrityCheck:(BOOL)quick;
+
 ///----------------------------
 /// @name SQLite library status
 ///----------------------------
