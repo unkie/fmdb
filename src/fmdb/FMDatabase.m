@@ -98,6 +98,53 @@
     return FMDBVersionVal;
 }
 
+#pragma mark Integrity checking
+
+
+- (BOOL) integrityCheck:(BOOL)quick log:(NSString**)log
+{
+	FMResultSet *rs = [self executeQuery:(quick ? @"PRAGMA quick_check" : @"PRAGMA integrity_check")];
+	if (rs == NULL) {
+		/* No result set means the integrity check could not be executed. */
+		NSLog (@"verification error: %d \"%@\"",
+			   [self lastErrorCode], [self lastErrorMessage]);
+		return NO;
+	}
+	
+	BOOL success = YES;
+	if ([rs next]) {
+		/* There is at least one row in the integrity check results. */
+		NSString *msg = [rs stringForColumnIndex:0];
+		if (log) {
+			*log = msg;
+		}
+		if (![msg isEqualToString:@"ok"]) {
+			success = NO;
+			if (log) {
+				/* Any errors during integrity check mean a broken database. */
+				while ([rs next]) {
+					*log = [*log stringByAppendingString:@"\r"];
+					*log = [*log stringByAppendingString:[rs stringForColumnIndex:0]];
+				}
+			}
+		}
+	} else {
+		/* An empty result set means the check could not be executed. */
+		NSLog (@"verification error: %d \"%@\"",
+			   [self lastErrorCode], [self lastErrorMessage]);
+		success = NO;
+	}
+	
+	[rs close];
+	
+	return success;
+}
+
+- (BOOL) integrityCheck:(BOOL)quick
+{
+	return [self integrityCheck:quick log:NULL];
+}
+
 #pragma mark SQLite information
 
 + (NSString*)sqliteLibVersion {
