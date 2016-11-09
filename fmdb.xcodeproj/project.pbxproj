@@ -24,7 +24,6 @@
 		BF5D041F18416BB2008C5AA9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = BF5D041D18416BB2008C5AA9 /* InfoPlist.strings */; };
 		BF5D042118416BB2008C5AA9 /* FMDatabaseTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BF5D042018416BB2008C5AA9 /* FMDatabaseTests.m */; };
 		BF5D04281841702E008C5AA9 /* libFMDB.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EE4290EF12B42F870088BD94 /* libFMDB.a */; };
-		BF5D042918417159008C5AA9 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EE42910C12B42FFA0088BD94 /* libsqlite3.dylib */; };
 		BF940F5C18417D490001E077 /* FMDBTempDBTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BF940F5B18417D490001E077 /* FMDBTempDBTests.m */; };
 		BF940F5E18417DEA0001E077 /* FMDatabaseAdditionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BF940F5D18417DEA0001E077 /* FMDatabaseAdditionsTests.m */; };
 		BFC152B118417F0D00605DF7 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = CC50F2CB0DF9183600E4AAAE /* FMDatabaseAdditions.m */; };
@@ -54,7 +53,6 @@
 		EE42910812B42FCC0088BD94 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = CCC24EBB0A13E34D00A6D3E3 /* FMDatabase.m */; };
 		EE42910912B42FD00088BD94 /* FMResultSet.h in Headers */ = {isa = PBXBuildFile; fileRef = CCC24EBF0A13E34D00A6D3E3 /* FMResultSet.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EE42910A12B42FD20088BD94 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = CCC24EC00A13E34D00A6D3E3 /* FMResultSet.m */; };
-		EE42910D12B42FFA0088BD94 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EE42910C12B42FFA0088BD94 /* libsqlite3.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -141,7 +139,6 @@
 		CCC24EC00A13E34D00A6D3E3 /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FMResultSet.m; path = src/fmdb/FMResultSet.m; sourceTree = SOURCE_ROOT; };
 		D4A740A11A7046330058EBEE /* FMDatabaseFTS3WithModuleNameTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseFTS3WithModuleNameTests.m; sourceTree = "<group>"; };
 		EE4290EF12B42F870088BD94 /* libFMDB.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libFMDB.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		EE42910C12B42FFA0088BD94 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,7 +164,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BF5D042918417159008C5AA9 /* libsqlite3.dylib in Frameworks */,
 				BF5D04281841702E008C5AA9 /* libFMDB.a in Frameworks */,
 				BF5D041918416BB2008C5AA9 /* XCTest.framework in Frameworks */,
 			);
@@ -177,7 +173,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EE42910D12B42FFA0088BD94 /* libsqlite3.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -197,7 +192,6 @@
 				BF5D041A18416BB2008C5AA9 /* Tests */,
 				BF5D041718416BB2008C5AA9 /* Frameworks */,
 				1AB674ADFE9D54B511CA2CBB /* Products */,
-				EE42910C12B42FFA0088BD94 /* libsqlite3.dylib */,
 			);
 			name = fmdb;
 			sourceTree = "<group>";
@@ -583,6 +577,7 @@
 				INSTALL_PATH = "$(HOME)/bin";
 				LIBRARY_SEARCH_PATHS = "$(LIBRARY_SEARCH_PATHS)";
 				PRODUCT_NAME = fmdb;
+				SDKROOT = macosx;
 			};
 			name = Debug;
 		};
@@ -602,6 +597,7 @@
 				INSTALL_PATH = "$(HOME)/bin";
 				LIBRARY_SEARCH_PATHS = "$(LIBRARY_SEARCH_PATHS)";
 				PRODUCT_NAME = fmdb;
+				SDKROOT = macosx;
 			};
 			name = Release;
 		};
@@ -628,7 +624,8 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = macosx10.9;
+				OTHER_LDFLAGS = "-lsqlite3";
+				SDKROOT = macosx;
 			};
 			name = Debug;
 		};
@@ -650,7 +647,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				SDKROOT = macosx10.9;
+				OTHER_LDFLAGS = "-lsqlite3";
+				SDKROOT = macosx;
 			};
 			name = Release;
 		};
@@ -723,10 +721,6 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-					"$(inherited)",
-				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -746,7 +740,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx10.9;
+				SDKROOT = macosx;
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Debug;
@@ -766,10 +760,6 @@
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-					"$(inherited)",
-				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -781,7 +771,7 @@
 				INFOPLIST_FILE = "Tests/Tests-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx10.9;
+				SDKROOT = macosx;
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Release;
