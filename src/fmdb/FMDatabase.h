@@ -1079,7 +1079,7 @@ typedef NS_ENUM(int, FMDBCheckpointMode) {
  
  */
 
-- (BOOL) integrityCheck:(BOOL)quick log:(NSString**)log;
+- (BOOL) integrityCheck:(BOOL)quick log:(NSString*_Nullable*_Nullable)log;
 
 /** Verify the database integrity
  
@@ -1110,8 +1110,8 @@ typedef NS_ENUM(int, FMDBCheckpointMode) {
  
  */
 
-- (BOOL)backupTo:(NSString*)aPath
-		 withKey:(NSString*)key
+- (BOOL)backupTo:(NSString*_Nonnull)aPath
+		 withKey:(NSString*_Nullable)key
 andProgressBlock:(void (^)(int pagesRemaining, int pageCount))progressBlock;
  
 ///----------------------------

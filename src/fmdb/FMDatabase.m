@@ -132,7 +132,7 @@ NS_ASSUME_NONNULL_END
 #pragma mark Integrity checking
 
 
-- (BOOL) integrityCheck:(BOOL)quick log:(NSString**)log
+- (BOOL) integrityCheck:(BOOL)quick log:(NSString*_Nullable*_Nullable)log
 {
 	FMResultSet *rs = [self executeQuery:(quick ? @"PRAGMA quick_check" : @"PRAGMA integrity_check")];
 	if (rs == NULL) {
@@ -1554,8 +1554,8 @@ static NSString *FMDBEscapeSavePointName(NSString *savepointName) {
 
 #pragma mark Online backup
 
-- (BOOL)backupTo:(NSString*)aPath
-		 withKey:(NSString*)key
+- (BOOL)backupTo:(NSString*_Nonnull)aPath
+         withKey:(NSString*_Nullable)key
 andProgressBlock:(void (^)(int pagesRemaining, int pageCount))progressBlock
 {
 	NSParameterAssert(aPath);
@@ -1592,6 +1592,8 @@ andProgressBlock:(void (^)(int pagesRemaining, int pageCount))progressBlock
 			goto backupTowithProgressBlockDone;
 		}
 	}
+#else
+    #pragma unused(key)
 #endif
 	
 	/* Open the backup object to accomplish the backup. */
