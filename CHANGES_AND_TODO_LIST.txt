@@ -3,6 +3,53 @@ Zip, nada, zilch.  Got any ideas?
 
 If you would like to contribute some code ... awesome!  I just ask that you make it conform to the coding conventions already set in here, and to add the necessary of tests for your new code to tests target.  And of course, the code should be of general use to more than just a couple of folks.  Send your patches to gus@flyingmeat.com.
 
+2018.10.23 Version 2.7.5
+    Xcode 10 support. Probably some other stuff over the past year as well.
+    
+    Added confidence inspiring release notes. Also the tests pass.
+
+2017.10.23 Version 2.7.4
+    Added support for explicit transactions.
+
+    Add warning that `beginTransaction` and `inTransaction` behavior is likely to change.
+
+2017.10.20 Version 2.7.3
+    Added support for immediate transactions and checkpoint. (thanks to @benasher44)
+
+    Updated nullability of `FMDatabaseQueue` initialization methods. (thanks to @robotive)
+    In a related correction, we updated README to avoid confusing reference to nullability
+    changes in 2.7. (In 2.7, as part of the nullability audit, I (@robertryan) accidentally
+    declared a few `FMDatabaseQueue` initializers to be nonnull, but @robotive pointed out
+    that they actually _were_ nullable. Most of that nullability audit stands as it was
+    released in 2.7.0, but this fixes a few little errors.
+
+    Minor correction to README, whereby Swift example code implicitly suggested using
+    Documents folder for database, whereas with the advent of the new Files app, Apple suggests
+    using the "Application Support" directory for files that are not documents for end-user
+    interaction. Clearly, use whatever is appropriate in your case, but no longer assume that
+    you should just place files in Documents folder, as that is often not the appropriate location.
+
+2017.06.01 Version 2.7.2
+    Make blocks `nonescaping` (thanks to @benasher44)
+
+    Update method documentation.
+
+2017.06.01 Version 2.7.1
+    Adjust `valueLong` return type and `resultLong` parameter to suppress warning.
+
+    Fix pointer comparison to avoid static analysis warning in `columnIndexForName`.
+
+2017.05.26 Version 2.7
+    Audited library for nullability, offering informational warnings for Objective-C users during static analysis, but significantly changes interface for Swift users, more accurately representing parameters and return values as optional or non-optional, as appropriate.
+
+    Renamed a number of methods, deprecating old names.
+
+    Converted some methods to properties. Again, it should be largely transparent from Objective-C users, but Swift users will find they'll just have to remove some `()` in their code, lending itself to more logical looking code.
+
+    The `objectForColumn` used to return `NSNull` if you supplied it an invalid subscript. It now returns `nil`, more customary for subscript operators.
+
+    For more information, see https://github.com/ccgus/fmdb/pull/584.
+
 2015.12.28
     Removed `sqlite3.h` from the headers to simplify incorporation of FMDB into a framework. This eliminates the dreaded "non-modular headers" error in frameworks.
 
