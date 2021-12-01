@@ -1105,7 +1105,7 @@ func executeUpdate(sql: String, values: [Any]?) throws -> Bool { }
  
  */
 
-- (BOOL) integrityCheck:(BOOL)quick log:(NSString*_Nullable*_Nullable)log;
+- (BOOL) integrityCheck:(BOOL)quick log:(NSString * _Nonnull __autoreleasing * _Nullable)log;
 
 /** Verify the database integrity
  

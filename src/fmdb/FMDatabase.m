@@ -145,7 +145,7 @@ NS_ASSUME_NONNULL_END
 #pragma mark Integrity checking
 
 
-- (BOOL) integrityCheck:(BOOL)quick log:(NSString*_Nullable*_Nullable)log
+- (BOOL) integrityCheck:(BOOL)quick log:(NSString * _Nonnull __autoreleasing * _Nullable)log
 {
 	FMResultSet *rs = [self executeQuery:(quick ? @"PRAGMA quick_check" : @"PRAGMA integrity_check")];
 	if (rs == NULL) {
